@@ -1,0 +1,60 @@
+﻿
+<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+    <div class='carousel-outer'>
+        <!-- me art lab slider -->
+        <div class='carousel-inner ' style="height:380px;">
+            <div class='item active'>
+                <img src='~/Images/Sample/woman.jpg' alt=''id="zoom_05" class="img-responsive center-block"  data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg"/>
+            </div>
+            <div class='item'  id="zoom_05">
+                <img src='~/Images/Sample/woman1.jpg' alt='' class="img-responsive center-block" data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg" />
+            </div>
+            <div class='item'>
+                <img src='~/Images/Sample/Shoes.jpg' alt='' class="img-responsive center-block" data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg" />
+            </div>
+                
+            <div class='item'>
+                <img src='~/Images/Sample/home.jpg' alt='' class="img-responsive center-block" data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05"/>
+            </div>
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg' class="img-responsive center-block" alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg" id="zoom_05"/>
+            </div>
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg' class="img-responsive center-block" alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg" id="zoom_05"/>
+            </div>
+			
+        </div>
+            
+        <!-- sag sol -->
+        <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+            <span class='glyphicon glyphicon-chevron-left'></span>
+        </a>
+        <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+            <span class='glyphicon glyphicon-chevron-right'></span>
+        </a>
+    </div>
+    
+    <!-- thumb -->
+    <ol class='carousel-indicators mCustomScrollbar meartlab'>
+        <li data-target='#carousel-custom' data-slide-to='0' class='active'><img src='~/Images/Sample/woman.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='1'><img src='~/Images/Sample/woman1.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='2'><img src='~/Images/Sample/Shoes.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='3'><img src='~/Images/Sample/home.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='4'><img src='http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='5'><img src='http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg' alt='' /></li>
+
+    </ol>
+</div>
+
+
+@section Scripts {
+<script>
+	  $("#zoom_05").elevateZoom({ zoomType    : "inner", cursor: "crosshair" });
+	</script>
+    <script type="text/javascript">
+
+$(document).ready(function() {
+    $(".mCustomScrollbar").mCustomScrollbar({axis:"x"});
+});
+</script>
+}

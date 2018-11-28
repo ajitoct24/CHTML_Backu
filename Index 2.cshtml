@@ -1,0 +1,408 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+<div class="content animate-panel1">
+	<div class="row social-board">
+		<div class="col-lg-6" style="" id="parent">
+			 
+			<div  class="object-controls"  style="top:30px;right:1px;position:absolute;z-index:1">
+			 @Html.Partial("ImageControl")
+			</div>	
+			<div style="top:30px;left:20px;position:absolute;;z-index:1">
+				
+				@Html.Partial("SetControls")
+					</div>	
+			<div  class="object-controls"  style="top:80px;right:1px;position:absolute;z-index:1">
+			
+				@Html.Partial("ImageSelector")
+
+				</div>	
+				<button data-toggle="button" onclick="addImage('~/Images/Sample/woman1.jpg')" class="addToLook btn btn-primary btn-xs" type="button">
+						<i class="fa fa-thumbs-down"></i> Add To Look
+					</button>	
+				
+				<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+					<canvas id="intro-canvas" style="border:1px solid grey;"></canvas>
+				</div>
+			
+		</div>
+		<div class="col-lg-6" style="">
+			<div class="hpanel">
+	                <ul class="nav nav-tabs">
+	                    <li class="active"><a data-toggle="tab" href="#tab-3"> <i class="fa fa-laptop"></i></a></li>
+	                    <li class=""><a data-toggle="tab" href="#tab-4"><i class="fa fa-desktop"></i></a></li>
+	                    <li class=""><a data-toggle="tab" href="#tab-5"><i class="fa fa-database"></i></a></li>
+	                </ul>
+	                <div class="tab-content">
+	                    <div id="tab-3" class="tab-pane active">
+	                        <div class="panel-body">
+	                            <div class="animate-panel" data-effect="bounceInRight" data-child="hpanel">
+			    		<div class="col-lg-3" style="padding:5px">
+							
+						@Html.Partial("item")
+								
+					</div>
+					<div class="col-lg-3" style="padding:5px">
+						@Html.Partial("item")
+					</div>
+				     </div> 
+	                        </div>
+	                    </div>
+	                    <div id="tab-4" class="tab-pane">
+	                        <div class="panel-body">
+	                            <div class="animate-panel" data-effect="bounceInRight" data-child="hpanel">
+			    		<div class="col-lg-3">
+							
+						@Html.Partial("item")
+								
+					</div>
+					<div class="col-lg-3">
+						@Html.Partial("item")
+					</div>
+				     </div> 
+	                        </div>
+	                    </div>
+	                    <div id="tab-5" class="tab-pane">
+	                        <div class="panel-body">
+	                            <div class="animate-panel" data-effect="bounceInRight" data-child="hpanel">
+			    		<div class="col-lg-3 col-xs-3">
+							
+						@Html.Partial("item")
+								
+					</div>
+					<div class="col-lg-3  col-xs-3">
+						@Html.Partial("item")
+					</div>
+				     </div> 
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+
+			
+		</div>
+	</div>
+</div>
+@Scripts.Render("~/bundles/fabricjscontroller/js")	
+
+<script>
+	
+	
+	function dragStart(event,src) {
+	    event.dataTransfer.setData("src", src);
+		//alert(src);   
+	}
+
+	function allowDrop(event) {
+	    event.preventDefault();
+	}
+
+	function drop(event) {
+	    event.preventDefault();
+		
+	    var data = event.dataTransfer.getData("src");
+	    if(data!='')
+			addImage(data);
+	}
+	function addImage(imagePath) {
+    	var coord = getRandomLeftTop();
+    	fabric.Image.fromURL(imagePath, function(image) {
+	    	image.set({
+	        	left: coord.left,
+	        	top: coord.top,
+	        	angle: 0
+	      	},{crossOrigin: 'Anonymous'})
+			.scale(0.1)
+	      	.setCoords();
+			
+	      	canvas.add(image);
+			canvas.setActiveObject(image)
+		});
+	  };
+
+	function removeSelected() {
+	    var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+	      var objectsInGroup = activeGroup.getObjects();
+	      canvas.discardActiveGroup();
+	      objectsInGroup.forEach(function(object) {
+	        canvas.remove(object);
+	      });
+	    }
+	    else if (activeObject) {
+	      canvas.remove(activeObject);
+	    }
+  	};
+
+</script>
+<script>
+	function ZoomIn()	{
+		scaleFactor=1.1;
+		if(scaleFactor != 1) {
+	    for(var i=0; i<canvas._objects.length; i++){
+	       var widthN=canvas._objects[i].getWidth()*scaleFactor;
+			canvas._objects[i].scaleToWidth(widthN);  
+	       canvas._objects[i].setLeft(canvas._objects[i].left * scaleFactor); 
+	       canvas._objects[i].setTop(canvas._objects[i].top * scaleFactor);   
+			
+	    }
+	    canvas.renderAll();
+		}
+	}
+	function ZoomOut()
+	{
+		scaleFactor=0.9;
+		if(scaleFactor != 1) {
+	    for(var i=0; i<canvas._objects.length; i++){
+	       var widthN=canvas._objects[i].getWidth()*scaleFactor;
+			canvas._objects[i].scaleToWidth(widthN);  
+	       canvas._objects[i].setLeft(canvas._objects[i].left * scaleFactor); 
+	       canvas._objects[i].setTop(canvas._objects[i].top * scaleFactor);   
+			
+	    }
+	    canvas.renderAll();
+		}
+	}
+	function Clone() {
+	   var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+			obj=activeGroup;	        
+	    }
+	    else if (activeObject) {
+	      	obj=activeObject;
+	    }
+		var object = fabric.util.object.clone(obj);
+		object.set("top", object.top+10);
+    	object.set("left", object.left+10);
+     	canvas.add(object);
+	}
+
+	function SendForward() {
+	    var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+			obj=activeGroup;	        
+	    }
+	    else if (activeObject) {
+	      	obj=activeObject;
+	    } 
+		canvas.bringForward(obj);
+		canvas.renderAll();
+	}
+
+	function SendBackward() {
+	    var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+			obj=activeGroup;	        
+	    }
+	    else if (activeObject) {
+	      	obj=activeObject;
+	    } 
+		canvas.sendBackwards(obj);
+		canvas.renderAll();
+	}
+
+	function RotateLeft(){
+		 var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+			obj=activeGroup;	        
+	    }
+	    else if (activeObject) {
+	      	obj=activeObject;
+	    }
+		if(obj.angle<360)
+			obj.rotate(obj.angle+90);
+		else
+			obj.rotate(90);
+		canvas.renderAll();
+	}
+	function RotateRight(){
+		var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+			obj=activeGroup;	        
+	    }
+	    else if (activeObject) {
+	      	obj=activeObject;
+	    }
+		if(obj.angle>-360)
+			obj.rotate(obj.angle-90);
+		else
+			obj.rotate(-90)
+		canvas.renderAll();
+	}
+	function Flip(){
+		var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+			obj=activeGroup;	        
+	    }
+	    else if (activeObject) {
+	      	obj=activeObject;
+	    }
+		if(!obj.getFlipX())
+		obj.setFlipX(true);
+		else
+		obj.setFlipX(false);
+	canvas.renderAll();
+	}
+	function Flop(){
+		var activeObject = canvas.getActiveObject(),
+	        activeGroup = canvas.getActiveGroup();
+	    if (activeGroup) {
+			obj=activeGroup;	        
+	    }
+	    else if (activeObject) {
+	      	obj=activeObject;
+	    }
+		if(!obj.getFlipY())
+		obj.setFlipY(true);
+		else
+		obj.setFlipY(false);
+	canvas.renderAll();
+	}
+	function clearFilters() {
+        var obj = canvas.getActiveObject();
+        if (!obj) return;
+        obj.filters = [];
+        obj.applyFilters(function() {canvas.renderAll(); });        
+    }
+ function RemoveWhite() {
+	var obj = canvas.getActiveObject();	
+   	var filter=new fabric.Image.filters.RemoveWhite({
+  				threshold: 40,
+  				distance: 20
+  	});
+	obj.filters.push(filter);
+  	obj.applyFilters(canvas.renderAll.bind(canvas));
+ };
+	
+function recenterContent(){
+   	var objects=canvas.getObjects();
+	var leftM=99999;
+	var topM=99999;
+	var rightM=0;
+	var bottomM=0;
+	jQuery.each(objects,function(index,val){
+	object=val;
+	if(leftM>object.left)
+	leftM=object.left;
+	if(topM>object.top)
+	topM=object.top;
+	var obj_right=object.getWidth()+object.left;
+	var obj_bottom=object.getHeight()+object.top;
+	if(rightM<obj_right)
+	rightM=obj_right;
+	if(bottomM<obj_bottom)
+	bottomM=obj_bottom;
+	});
+
+	var widthM= rightM-leftM;
+	var heightM= bottomM-topM;
+
+	var currheight=canvas.getHeight();
+	var currwidth=canvas.getWidth();
+	var offset=50;
+	var scaleN=0;
+	heightscale=(currheight-2*offset)/heightM;
+	widthscale=(currwidth-2*offset)/widthM;
+	if(heightscale<widthscale)
+	scaleN=heightscale;
+	else
+	scaleN=widthscale;
+
+	var leftShift=leftM;
+	var topShift=topM;
+
+	jQuery.each(objects,function(index,val){
+	object=val
+	var leftN=(object.getLeft()-leftShift);
+	var topN=(object.getTop()-topShift);
+	var widthN=object.getWidth()*scaleN;
+	object.scaleToWidth(widthN);
+	object.setLeft(leftN*scaleN+offset).setCoords();
+	object.setTop(topN*scaleN+offset).setCoords();
+
+	});
+	canvas.renderAll();
+
+};	
+window.addEventListener('resize', function(event){
+ 	setCanvasDimensions();
+});	
+function showObjectControls(flag){
+	if(flag)
+		$('.object-controls').show();
+	else
+		$('.object-controls').hide();
+}
+function setCanvasDimensions() {	
+  		var parent = document.getElementById("parent");
+		width = parent.offsetWidth;
+		height = parent.offsetWidth;
+	  var scaleFactor = canvas.getWidth()/width;
+      canvas.setWidth(width);
+	  canvas.setHeight(height);
+	  canvas.calcOffset();
+	  if(scaleFactor != 1) {
+	    for(var i=0; i<canvas._objects.length; i++){
+	       canvas._objects[i].scale(scaleFactor);   
+	       canvas._objects[i].setLeft(canvas._objects[i].left * scaleFactor); 
+	       canvas._objects[i].setTop(canvas._objects[i].top * scaleFactor);   
+	    }
+	    canvas.renderAll();
+	  }
+		showObjectControls(false);
+	};
+</script> 
+
+<script>
+	var canvas = this.__canvas = new fabric.Canvas('intro-canvas');
+	//fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
+	//fabric.Object.prototype.transparentCorners = false;
+	canvas
+    .on('object:selected', function() {showObjectControls(true);})
+    .on('group:selected', function() {showObjectControls(true);})
+    .on('selection:cleared', function() {showObjectControls(false);});
+	setCanvasDimensions()
+	
+</script>
+<script>
+	
+	function resizeSquareImage() {
+	    var x=document.getElementsByClassName("squareimage");
+		for (i = 0, len = x.length; i < len; i++) { 
+	    	theImg=x[i];
+		theImg.style.width='100%';
+		theImg.height=theImg.width;
+		theImg.style.objectFit='cover';
+		theImg.style.backgroundColor='white';
+		theImg.style.objectPosition='0 0';
+		}
+	     var x=document.getElementsByClassName("squareimage-fit");
+		for (i = 0, len = x.length; i < len; i++) { 
+	    	theImg=x[i];
+		theImg.style.width='100%';
+		theImg.height=theImg.width;
+		theImg.style.objectFit='fill';
+		theImg.style.backgroundColor='white';
+		theImg.style.objectPosition='0 0';
+	    }
+	}
+	
+	resizeSquareImage();
+	window.onresize = function(event) {
+    	resizeSquareImage();
+	};
+	window.onload = function() {
+	  resizeSquareImage();
+	};
+</script>

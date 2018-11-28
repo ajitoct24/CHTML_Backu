@@ -1,0 +1,123 @@
+﻿
+<div class="modal-dialog  modal-lg">
+			<div class="row" style="margin:5px;">
+				<div class="col-sm-3 col-xs-6">
+					<div class="hpanel hbgyellow panel panel-default text-info">
+    						<div class="panel-body" style="padding:0px">
+       						 <div class="hpanel  "  style="margin:0px">
+							<div class="panel-body">
+								<div class="text-center">
+					                        <h3>ask for Reviews</h3>
+					                        <p class="text-big font-light">
+					                           	<i class="fa fa-hand-paper-o font-light"></i> 
+					                        </p>
+					                        <small>
+					                            Do you need reviews from community members? Now you can request member for reviews. Believe me its worth a try.
+					                        </small>
+								</div>
+							</div>
+						</div>
+				    		</div>
+					</div>
+
+				</div>
+				<div class="col-sm-3 col-xs-6 "   >
+					<div class="hpanel hbgyellow panel panel-default text-info">
+    						<div class="panel-body" style="padding:0px">
+       						 <div class="hpanel  "  style="margin:0px">
+							<div class="panel-body">
+								<div class="text-center">
+					                        <h3>ask "Should I Buy This?"</h3>
+					                        <p class="text-big font-light">
+					                           	<i class="pe pe-7s-way font-light"></i> 
+					                        </p>
+					                        <small>
+					                             <p style="height:80px;">
+				                               Ask your question with yes and no options.
+				                            </p>
+					                        </small>
+								</div>
+							</div>
+						</div>
+				    		</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-xs-6"   >
+					<div class="hpanel hbgyellow panel panel-default text-info">
+    						<div class="panel-body" style="padding:0px">
+       						 <div class="hpanel  "  style="margin:0px">
+							<div class="panel-body">
+								<div class="text-center">
+					                        <h3>start a Product poll</h3>
+					                        <p class="text-big font-light">
+					                           	<i class="pe pe-7s-shopbag font-light"></i> 
+					                        </p>
+					                        <small>
+					                             <p style="height:80px;">
+				                                Get help to choose between shopping products.
+				                            </p>
+					                        </small>
+								</div>
+							</div>
+						</div>
+				    		</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 col-xs-6"   >
+					<div class="hpanel hbgyellow panel panel-default text-info">
+    						<div class="panel-body" style="padding:0px">
+       						 <div class="hpanel  "  style="margin:0px">
+							<div class="panel-body">
+								<div class="text-center">
+					                        <h3>start an Image poll</h3>
+					                        <p class="text-big font-light">
+					                           	<i class="pe pe-7s-camera font-light"></i> 
+					                        </p>
+					                        <small>
+					                             <p style="height:80px;">
+				                               Ask your question with images.
+				                            </p>
+					                        </small>
+								</div>
+							</div>
+						</div>
+				    		</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<script>
+$(document).ready(function(){
+    $("#YesNoPollButton").click(function(){
+    	$("#AskFriendsYesNoPoll").modal('show');
+	$("#AskFriends").modal('hide');
+	
+    });
+    $("#ListPollButton").click(function(){
+    	$("#AskFriendsListPoll").modal('show');
+	$("#AskFriends").modal('hide');
+	
+    });
+    $("#ImagePollButton").click(function(){
+    	$("#AskFriendsImagePoll").modal('show');
+	$("#AskFriends").modal('hide');
+    });	
+	$( "#AskFriendsImagePoll").on('shown.bs.modal', function(){
+	resizeSquareImage();
+		
+	});
+	$( "#AskFriendsProductPoll").on('shown.bs.modal', function(){
+	resizeSquareImage();
+		
+	});
+    $("#ProductPollButton").click(function(){
+    	$("#AskFriendsProductPoll").modal('show');
+	$("#AskFriends").modal('hide');
+	
+    });		
+});
+</script>
+
+

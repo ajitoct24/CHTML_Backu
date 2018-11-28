@@ -1,0 +1,18 @@
+﻿<div class="hpanel  panel panel-default ">
+	<div class="panel-body" style="padding:0px">
+		<a href="#">
+		<div class="vote-item" style="padding:0px; padding:2px;">
+			<div class="show-on-click-item" onclick="$(event.target).closest('.show-on-click-item').find('.show-on-click').toggleClass('show-on-click hide-on-click');resizeSquareImage();">
+						<img  ondragstart="dragStart(event,src)" draggable="true"  alt="image" class="squareimage-fit" src="~/Images/Sample/facewash.jpg" />
+						<div class="show-on-click" style="width:300%;">
+							@Html.Partial("itemTooltip")
+
+						</div>
+					
+			</div>
+
+		</div>
+			</a>
+	</div>
+
+</div>

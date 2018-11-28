@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "BrandHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/bundles/starRating/css")
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/starRating/js")
+    @Scripts.Render("~/bundles/chartjs/js")
+
+
+
+}
+
+<div class="content animate-panel">
+	<div class="row social-board">
+		<div class="col-lg-12">
+			<h3 class="product-title">Reebok</h3>
+			<div class="rating">
+				<input id="input-1" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-show-clear="false"/>
+				<a data-toggle="tab" href="#tab-3">41 Reviews</a>
+			</div>
+			<p class="vote">
+				<strong>Avaialble on <button class="add-to-cart btn btn-default" type="button">amazon.in for $180 </button>
+				</strong>
+				<button class="add-to-cart btn btn-success" type="button">Buy Now</button>
+			</p>
+			<hr/>
+			<p class="vote">
+				<strong>Not sure? </strong>
+				<button class="add-to-cart btn btn-danger" data-toggle="modal" data-target="#AskForHelp" type="button">Ask for help</button>
+			</p>
+			<p class="vote">
+				<strong>Where can I this? (If you know, add your finding and help other) </strong>
+				<button class="add-to-cart btn btn-primary" data-toggle="modal" data-target="#AddFindUrl"  type="button">Add Your Find</button>
+			</p>
+			<hr/>
+			<div class="media social-profile clearfix">
+				<a class="pull-left">
+					<img src="~/Images/a7.jpg" alt="profile-picture"/>
+				</a>
+				<div class="media-body">
+					<h6>
+						<a>Ajit Deshmukh</a> via 
+									
+										
+									
+							
+						<a>amazon.in</a>
+					</h6>
+					<small class="text-muted">found this 2 years ago</small>
+				</div>
+			</div>
+			<hr/>
+		</div>
+
+	</div>
+	
+	<div class="row social-board">
+		<div class="col-lg-12">
+			<div class="hpanel  panel-group">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a data-toggle="tab" href="#tab-1">Engagement Analytics</a>
+					</li>
+					<li class="">
+						<a data-toggle="tab" href="#tab-2">Consumer Issues</a>
+					</li>
+					<li class="">
+						<a data-toggle="tab" href="#tab-3">Challenges</a>
+					</li>
+					<li class="">
+						<a data-toggle="tab" href="#tab-4">Subscribers</a>
+					</li>
+					<li class="">
+						<a data-toggle="tab" href="#tab-5">Products</a>
+					</li>
+					<li class="">
+						<a data-toggle="tab" href="#tab-6">Featured In</a>
+					</li>
+					<li class="">
+						<a data-toggle="tab" href="#tab-7">Offers & Coupons</a>
+					</li>
+					<li class="">
+						<a data-toggle="tab" href="#tab-8">Reviews</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div id="tab-1" class="tab-pane active">
+						<div class="panel-body"></div>
+					</div>
+					<div id="tab-2" class="tab-pane">
+						<div class="panel-body "></div>
+					</div>
+					<div id="tab-3" class="tab-pane ">
+						<div class="panel-body"></div>
+					</div>
+					<div id="tab-4" class="tab-pane ">
+						<div class="panel-body"></div>
+					</div>
+					<div id="tab-5" class="tab-pane ">
+						<div class="panel-body"></div>
+					</div>
+					<div id="tab-6" class="tab-pane ">
+						<div class="panel-body"></div>
+					</div>
+					<div id="tab-7" class="tab-pane ">
+						<div class="panel-body"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12  text-right" style="bottom:14px;right:14px;position:fixed;z-index:660;">
+		<button data-toggle="button" class="addnewbtn btn btn-warning" style="box-shadow:0 2px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0.5px rgba(0, 0, 0, 0.04); border-radius:50%;" type="button"><i class="fa fa-plus"></i>  </button>
+		<div id="popover-content" class="hide" style="padding:0px;margin:0px">
+		<ul class="nav nav-second-level"  >
+	                <li class=""><a data-toggle="modal" data-target="#SaySomething">Launch Challenge</a></li>
+			<li class=""><a data-toggle="modal" data-target="#AskFriends">Talk to consumers</a></li>
+			<li class=""><a data-toggle="modal" data-target="#FindStyle">Launch Coupons & Offers</a></li>
+			<li class=""><a href="~/CreateLook">Talk to us(for engagement ideas)</a></li>	
+		</ul>
+	</div>
+</div>
+<script>
+
+$(".addnewbtn").popover({
+    html: true, placement:"left",
+	content: function() {
+          return $('#popover-content').html();
+        }
+}).click(function(e) {
+    $(this).popover('toggle');
+    e.stopPropagation();
+});
+$('html').click(function(e) {
+    $('.addnewbtn').popover('hide');
+});	
+
+</script>

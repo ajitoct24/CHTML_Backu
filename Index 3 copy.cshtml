@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "ProductHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    @Styles.Render("~/bundles/producthome/css")
+    @Styles.Render("~/bundles/starRating/css")
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/starRating/js")
+    @Scripts.Render("~/bundles/producthome/js")
+    @Scripts.Render("~/bundles/chartjs/js")
+
+
+
+}
+<div class="content animate-panel1">
+	<div class="row social-board">
+<row>
+
+	<div class="col-lg-7">
+		<h3 class="product-title">men's shoes fashion</h3>
+						<div class="rating">
+							<input id="input-1" class="rating" data-min="0" data-max="5" data-step="0.5" data-size="xs" data-show-clear="false"><a data-toggle="tab" href="#tab-3">41 Reviews</a>
+
+						</div>
+						<p><strong>Avaialble on <button class="add-to-cart btn btn-default" type="button">amazon.in for $180 </button><strong>  <button class="add-to-cart btn btn-success" type="button">Buy Now</button></p>
+						<hr/>
+						<p class="vote"><strong>Not sure? </strong><button class="add-to-cart btn btn-danger" data-toggle="modal" data-target="#AskForHelp" type="button">Ask for help</button></p>
+						<p class="vote"><strong>Where can I this? (If you know, add your finding and help other) </strong><button class="add-to-cart btn btn-primary" data-toggle="modal" data-target="#AddFindUrl"  type="button">Add Your Find</button></p>
+						<hr/>
+						<div class="media social-profile clearfix">
+							<a class="pull-left">
+								<img src="~/Images/a7.jpg" alt="profile-picture"/>
+							</a>
+							<div class="media-body">
+								<h6><a>Ajit Deshmukh</a> via <a>amazon.in</a></h6>
+								<small class="text-muted">found this 2 years ago</small>
+							</div>
+						</div>
+	</div>
+	<div class="col-lg-5">
+		@Html.Partial("ProductImage")
+	</div>
+	<div class="modal fade" id="AskForHelp" role="dialog" aria-hidden="true">
+                          @Html.Partial("AskForHelp")  
+	</div>	
+	<div class="modal fade" id="AddFindUrl" role="dialog" aria-hidden="true">
+                          @Html.Partial("AddFindUrl")  
+	</div>	
+</row>
+<row>
+	<div class="col-lg-12">
+				<hr/>
+		 <div class="hpanel  panel-group">
+		
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a data-toggle="tab" href="#tab-1"> Featured in</a>
+			</li>
+			<li class="">
+				<a data-toggle="tab" href="#tab-2">Forums</a>
+			</li>
+			<li class="">
+				<a data-toggle="tab" href="#tab-3">Reviews</a>
+			</li>
+			<li class="">
+				<a data-toggle="tab" href="#tab-4">Available On</a>
+			</li>
+			<li class="">
+				<a data-toggle="tab" href="#tab-5">Price Trend</a>
+			</li>
+			<li class="">
+				<a data-toggle="tab" href="#tab-6">Questions & Answers</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div id="tab-1" class="tab-pane active">
+			    
+				<div class="panel-body">
+                            		@Html.Partial("FeaturedInLook")
+                		</div>
+				<div class="panel-body">
+                            		@Html.Partial("SimilarProducts")
+                		</div>
+			</div>
+			<div id="tab-2" class="tab-pane">
+				<div class="panel-body ">
+					@Html.Partial("ProductForum")
+				</div>
+			</div>
+			<div id="tab-3" class="tab-pane ">
+				<div class="panel-body">
+					@Html.Partial("Reviews")
+				</div>
+			</div>
+			<div id="tab-4" class="tab-pane ">
+				<div class="panel-body">
+					@Html.Partial("AvailableOn")
+				</div>
+			</div>
+			<div id="tab-5" class="tab-pane ">
+				<div class="panel-body">
+					@Html.Partial("PriceTrends")
+				</div>
+			</div>
+			<div id="tab-6" class="tab-pane ">
+				<div class="panel-body">
+					@Html.Partial("QuestionAnswers")
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</row>
+
+
+
+</div></div>
+
+<script>
+$(document).on('ready', function(){
+    $("#input-1").rating();
+	var myrating=3.6;
+    if (myrating == "") {
+            $("#input-1").rating("clear");
+        } else { 
+            $("#input-1").rating("update", myrating); 
+        }
+});
+</script>
+ 
